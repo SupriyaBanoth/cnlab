@@ -1,0 +1,22 @@
+#include<stdio.h>
+void main(){
+    int nf,c=0,ws,ack;
+    printf("Enter window size: ");
+    scanf("%d",&ws);
+    printf("Enter no. of frames: ");
+    scanf("%d",&nf);
+    while(1){
+        for(int i=0;i<ws;i++){
+            printf("Frame %d is transmitted\n",c);
+            if(c==nf-1)
+                break;
+            c+=1;
+        }
+        printf("Enter the last received acknowledgement: ");
+        scanf("%d",&ack);
+        if(ack==c)
+            break;
+        else
+        c=ack+1;
+    }
+}
