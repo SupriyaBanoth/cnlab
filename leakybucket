@@ -1,0 +1,38 @@
+#include<stdio.h>
+struct packet{int time,size;}p[50];
+int main(){
+    int n,bsize,outrate,bfilled=0,k=0;
+    printf("packets: ");
+    scanf("%d",&n);
+    for(int i=0;i<n;i++) scanf("%d%d",&p[i].time,&p[i].size);
+    printf("Bucket, outrate: ");
+    scanf("%d%d",&bsize,&outrate);
+    for(int i=1,m=p[n-1].time;i<=m||bfilled;i++){
+        printf("\nTime%d",i);
+        if(p[k].time==i&&k<n){
+            if(bfilled+p[k].size<=bsize){
+                bfilled+=p[k].size;
+                printf("Inserted %d bytes",p[k++].size);
+            }else{
+                printf("Discarded %d bytes",p[k++].size);
+            }
+        }
+        int sent=bfilled<outrate ? bfilled:outrate;
+        bfilled-=sent;
+        printf("Transmitted %d bytes, Bucket %d bytes",sent,bfilled);
+    }
+    return 0;
+}
+
+/*packets: 4
+1 5
+2 3
+4 7
+4 4
+Bucket, outrate: 10 5
+
+Time 1Inserted 5 bytesTransmitted 5 bytes, Bucket 0 bytes
+Time 2Inserted 3 bytesTransmitted 3 bytes, Bucket 0 bytes
+Time 3Transmitted 0 bytes, Bucket 0 bytes
+Time 4Inserted 7 bytesTransmitted 5 bytes, Bucket 2 bytes
+Time 5Transmitted 2 bytes, Bucket 0 bytes*/
