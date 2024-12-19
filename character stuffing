@@ -1,0 +1,30 @@
+#include<stdio.h>
+#include<string.h>
+void main(){
+    int i,k=0,j=6;
+    char s[100],a[100]=" ",b[100]=" ";
+    printf("enter string: ");
+    scanf("%s",s);
+    strcpy(b,"dlestx");
+    for(i=0;s[i]!='\0';i++){
+        if(s[i]=='d' && s[i+1]=='l' && s[i+2]=='e'){
+            b[j]='d';
+            b[j+1]='l';
+            b[j+2]='e';
+            j=j+3;
+        }
+        b[j]=s[i];
+        j++;
+    }
+    strcat(b,"dlestx");
+    printf("stuffed char%s: ",b);
+    int n=strlen(b);
+    for(i=6;i<n-6;i++){
+        if(b[i]=='d' && b[i+1]=='l' && b[i+2]=='e'){
+            i=i+3;
+        }
+        a[k]=b[i];
+        k++;
+    }
+    printf("\n destuffed char: %s",a);
+}
