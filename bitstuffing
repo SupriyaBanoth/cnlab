@@ -1,0 +1,41 @@
+#include<stdio.h>
+#include<string.h>
+void main(){
+    char instr[1000],outstr[100],b[200];
+    int i,c1=0,c2=0,j1=0,j2=0;
+    printf("Enter String: ");
+    scanf("%s",instr);
+    for(i=0;i<strlen(instr);i++){
+        if(instr[i]=='1'){
+            c1++;
+            outstr[j1++]=instr[i];
+        }else{
+            c1=0;
+            outstr[j1++]=instr[i];
+        }
+        if(c1==5){
+            c1=0;
+            outstr[j1++]='0';
+        }
+    }
+    outstr[j1]='\0';
+    printf("String aftre bit stuffing: %s\n",outstr);
+    for(i=0;i<strlen(outstr);i++){
+        if(c2==5){
+            c2=0;
+        continue;
+        }
+        if(outstr[i]=='1'){
+            c2++;
+            b[j2++]=outstr[i];
+        }
+        else{
+            c2=0;
+            b[j2++]=outstr[i];
+        }
+    }
+    printf("String after bit destuffing: %s\n",b);
+}
+/* output: String: 10111111011111001
+String aftre bit stuffing: 1011111010111110001
+String after bit destuffing: 10111111011111001*/
